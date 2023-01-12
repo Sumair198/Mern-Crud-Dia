@@ -1,0 +1,56 @@
+# GET  http://localhost:12000/getdata
+# Content-Type: application/json
+
+
+###
+# POST http://localhost:12000/create
+# Content-Type: application/json
+# {
+#     "name" : "javed",
+#     "password" : "99876",
+#     "email" : "javed@gmail.com"
+# }
+
+
+###
+GET  http://localhost:12000/getdata/63ae7177c4156fea3c0d47ef
+Content-Type: application/json
+x-powered-by: Express
+content-type: application/json; charset=utf-8
+content-length: 103
+etag: W/"67-YkoRvyoQXIXm6HJ81Ta1oo1UggU"
+date: Sat, 31 Dec 2022 14:38:10 GMT
+connection: close
+
+HTTP/1.1 200  - OK
+x-powered-by: Express
+content-type: application/json; charset=utf-8
+content-length: 103
+etag: W/"67-YkoRvyoQXIXm6HJ81Ta1oo1UggU"
+date: Sat, 31 Dec 2022 14:38:10 GMT
+connection: close
+
+
+###
+
+
+###
+PUT  http://localhost:12000/update/63ae6eb033d8fc302225e8fc
+Content-Type: application/json
+{
+    "name" : "Ali"
+}
+
+HTTP/1.1 200  - OK
+x-powered-by: Express
+content-type: application/json; charset=utf-8
+content-length: 102
+etag: W/"66-OG9bOUiHAFAHvUgaGxCbmnZWhDg"
+date: Sun, 01 Jan 2023 14:03:20 GMT
+connection: close
+
+###
+
+DELETE http://localhost:12000/delete/63b0174f9d1829848be0019e
+Content-Type : application/application/json
+
