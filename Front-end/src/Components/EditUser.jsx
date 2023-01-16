@@ -1,26 +1,46 @@
 // import  Button from "@mui/material"
+import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-// import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 // import getUser from '../service/api'
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 //Component
 const EditUser = () => {
 
-    // useEffect(()=> {
-    //     singleUser()
-    // },[])
-    // const singleUser = async(id)=>
-    // {
-    //     const responseSingle = await getUser(id)
-    //     console.log(responseSingle)
+    const defaultValues = {
+        name: '',
+        password:'',
+        email:''
+    }
+    const [editUser, setEditUser] = useState(defaultValues)
+    const {id} = useParams()
 
-    // }
+    useEffect(() => {
+        singleUser()
+    },[])
+     
+    const singleUser = async () => {
+        const response = await getoneUser(id)
+        console.log('data agaya' + response)
+        setEditUser(response.data)    
+    }
+    const getoneUser = async(id) => 
+    {
+        try{
+            return await axios.get(`http://localhost:12000/getdata/${id}`)
+        }
+        catch(err)
+        {
+            console.log('Error while calling single user ' + err)
+        }
+    }
+    
 
     const formik = useFormik(
         {
@@ -41,12 +61,12 @@ const EditUser = () => {
             }),
             onSubmit: async (values) => {
                 console.log(values)
-                try {
-                    return await axios.post(`http://localhost:12000/create`, values)
-                }
-                catch (err) {
-                    console.log('Error while calling api', err)
-                }
+                // try {
+                //     return await axios.post(`http://localhost:12000/create`, values)
+                // }
+                // catch (err) {
+                //     console.log('Error while calling api', err)
+                // }
             }
         }
     )
@@ -59,16 +79,16 @@ const EditUser = () => {
             <h1>Edit Page</h1>
             <form onSubmit={formik.handleSubmit}>
 
-                <TextField type='text' name='name' id='name' onChange={formik.handleChange} value={formik.values.name} label="Name" variant="standard" />
+                <TextField type='text' name='name' id='name' onChange={formik.handleChange} value={editUser.name} label="Name" variant="standard" />
                 {formik.errors.name && formik.touched.name ? (<p>{formik.errors.name}</p>) : null}
                 <br /> <br />
 
-                <TextField type='password' name='password' onChange={formik.handleChange} value={formik.values.password} id='password' label="Password" variant="standard" />
+                <TextField type='password' name='password' onChange={formik.handleChange} value={editUser.password} id='password' label="Password" variant="standard" />
                 {formik.errors.password && formik.touched.password ? (<p>{formik.errors.password}</p>) : null}
                 <br />
-                <br />
+                <br />     
 
-                <TextField type='email' name='email' id='email' onChange={formik.handleChange} value={formik.values.email} label="Email" variant="standard" />
+                <TextField type='email' name='email' id='email' onChange={formik.handleChange} value={editUser.email} label="Email" variant="standard" />
                 {formik.errors.email && formik.touched.email ? (<p>{formik.errors.email}</p>) : null}
 
                 <br />
@@ -82,3 +102,5 @@ const EditUser = () => {
 }
 
 export default EditUser;
+
+//Work

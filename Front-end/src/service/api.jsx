@@ -1,5 +1,5 @@
 import axios from 'axios';
-  
+
   const getUsers = async () => { 
     
     try {
@@ -24,3 +24,4 @@ import axios from 'axios';
   
 
 export default getUsers;
+  

@@ -1,11 +1,12 @@
+import React ,{useState} from 'react';
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material"
 import axios from 'axios';
-import { useEffect, useState } from "react";
-import getUser from '../service/api';
+import { useEffect } from "react";
+import  getUsers  from '../service/api';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-// import { Link  } from "react-router-dom"; 
-import { useNavigate } from "react-router-dom";
+import { Link  } from "react-router-dom"; 
+// import { useNavigate } from "react-router-dom";
 // import DeleteUser from '../service/api';
 // import EditUser from "./EditUser.jsx";
 
@@ -16,27 +17,23 @@ const AllUsers = () => {
 
     const [users, setUsers] = useState([])
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     useEffect(() => {
         getallUsers()
 
-    }, [])
+    })
 
     const getallUsers = async () => {
-        const responseUsers = await getUser()
+        const responseUsers = await getUsers()
         setUsers(responseUsers.data)
-        //    console.log(responseUsers.data)
+        //console.log(responseUsers.data)
     }
-
-    const editbtn = (id) => {
-        console.log(id)
-        navigate(`/update/${id}`)
-
-        // Component={Link} to={`/update/${user._id}`}
-
-    }
-
+    // const editbtn = (id) => {
+    //     console.log(id)
+    //     navigate(`/getdata/${id}`)
+    //     // Component={Link} to={`/update/${user._id}`}
+    // }
     const delbtn = async (id) => {
         console.log(id)
         try {
@@ -46,7 +43,6 @@ const AllUsers = () => {
             console.log('Error while calling api Delete Users', err)
         }
     }
-
     return (
         <Table>
             <TableHead >
@@ -70,7 +66,7 @@ const AllUsers = () => {
                             <TableCell>{user.password}</TableCell>
                             <TableCell>{user.email}</TableCell>
                             <TableCell>
-                                <Button onClick={() => editbtn(user._id)}   >
+                                <Button component={Link} to={`/update/${user._id}`}>
                                     <EditIcon />
                                 </Button>
 
@@ -88,3 +84,6 @@ const AllUsers = () => {
     )
 }
 export default AllUsers;
+
+
+//Work

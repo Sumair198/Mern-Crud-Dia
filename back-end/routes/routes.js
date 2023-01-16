@@ -8,7 +8,7 @@ const {createPerson, getPerson, getPersonID,updatePerson, deletePerson} = requir
 
 router.get('/getdata',getPerson)
 
-router.get('/getdata/:id',getPersonID)
+router.get('/getdata/:id',getPersonID)//abi ye use kr raha hun
 
 router.post('/create',createPerson)
 
