@@ -27,10 +27,10 @@ const EditUser = () => {
      
     const singleUser = async () => {
         const response = await getoneUser(id)
-        console.log('data agaya' + response)
+        console.log('data agaya' + JSON.stringify(response.data))
         setEditUser(response.data)    
     }
-    const getoneUser = async(id) => 
+    const getoneUser = async(id) =>    
     {
         try{
             return await axios.get(`http://localhost:12000/getdata/${id}`)
@@ -40,14 +40,12 @@ const EditUser = () => {
             console.log('Error while calling single user ' + err)
         }
     }
-    
-
     const formik = useFormik(
         {
             initialValues: {
                 name: "",
-                email: "",
-                password: ""
+                password: "",
+                email: ""
             },
             validationSchema: Yup.object({
                 name: Yup
@@ -59,20 +57,21 @@ const EditUser = () => {
                     .string().min(6).max(30)
                     .required('Please enter a password')
             }),
-            onSubmit: async (values) => {
-                console.log(values)
-                // try {
-                //     return await axios.post(`http://localhost:12000/create`, values)
-                // }
-                // catch (err) {
-                //     console.log('Error while calling api', err)
-                // }
+            onSubmit:  (event) => {
+                console.log(editUser) 
+
+                const { target = {}} = event || {};
+                const { value = "" } = target || {};
+                setEditUser({...editUser, [event.target.name] : value});
             }
         }
     )
-    // console.log(formik)
-    // console.log(Yup)
-
+    // const handleChange = (event)=>
+    // {
+    //     const { target = {}} = event || {};
+    //     const { value = "" } = target || {};
+    //     setEditUser({...editUser, [event.target.name] : value});
+    // }
 
     return (
         <>
@@ -103,4 +102,3 @@ const EditUser = () => {
 
 export default EditUser;
 
-//Work

@@ -43,7 +43,7 @@ const Home = () => {
         <>
             <form onSubmit={formik.handleSubmit}>
 
-                <TextField type='text' name='name' id='name' onChange={formik.handleChange} value={formik.values.name} label="Name" variant="standard" />
+                <TextField type='text' name='name' id='name' onChange={formik.handleChange} value={formik.values.name}  label="Name" variant="standard" />
                 {formik.errors.name && formik.touched.name ? (<p>{formik.errors.name}</p>) : null}
                 <br /> <br />
 
