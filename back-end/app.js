@@ -10,6 +10,7 @@ const cors = require('cors')
 connectdb()
 
 app.use(cors())
+
 // load router 
 app.use('/', router)
 

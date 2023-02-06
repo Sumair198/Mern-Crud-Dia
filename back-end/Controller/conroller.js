@@ -17,7 +17,7 @@ const getPerson = async (req,res) => {
 } 
 
 // get individual
-const getPersonID = async (req,res) =>
+const getPersonID = async (req,res) =>  
 {
     try{
         const personId = req.params.id
